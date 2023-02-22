@@ -2,8 +2,9 @@ const puppeteer = require("puppeteer");
 const express = require("express");
 
 const app = express();
-app.use(express.urlencoded());
-app.use(express.json())
+
+app.use(express.json());       
+app.use(express.urlencoded({extended: true})); 
 
 app.get("/", (req, res) => {
   //res.sendFile(__dirname + "/public/index.html");
@@ -16,7 +17,7 @@ app.get("/", (req, res) => {
 				<div class="card-body">
         <form action="/" method="POST">
         <div class="input-wrap">
-            <input type="name" id="youtube" value="https://www.youtube.com/@test">
+            <input type="name" id="youtube" name="youtube" value="https://www.youtube.com/@test">
             <button type="submit" class="button">get</button>
         </div>
     </form>
@@ -28,7 +29,8 @@ app.get("/", (req, res) => {
 
 app.post("/", async (req, res) => {
 
-  res.send(res.body);
+  const username2 = req.body.youtube;
+  console.log("Password: " + username2);
 
   const browser = await puppeteer.launch({
     args: ["--no-sandbox", "--disable-setuid-sandbox"],
