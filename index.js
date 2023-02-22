@@ -7,9 +7,9 @@ app.get("/", async (req, res) => {
     args: ["--no-sandbox", "--disable-setuid-sandbox"],
   });
   const page = await browser.newPage();
-  await page.goto("https://livecounts.io/instagram-live-follower-counter/1lkkan");
+  await page.goto("https://livecounts.io/instagram-live-follower-counter/gio");
   await page.waitForTimeout(2000)
-  const text = await page.$eval(".odometer.odometer-auto-theme", (el) => el.innerHTML);
+  const text = await page.$eval("#__next > div > div.px-3.px-0.max-w-4xl.xl\:max-w-5xl.m-auto > div:nth-child(2) > div > div", (el) => el.innerHTML);
   res.send(text);
 
   await browser.close();
