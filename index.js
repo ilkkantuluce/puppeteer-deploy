@@ -1,37 +1,19 @@
 const puppeteer = require("puppeteer");
 const express = require("express");
-
 const app = express();
 
 app.use(express.json());       
 app.use(express.urlencoded({extended: true})); 
 
 app.get("/", (req, res) => {
-  //res.sendFile(__dirname + "/public/index.html");
-
-  res.send(`
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-		<div class="container">
-			<div class="card">
-				<div class="card-body">
-        <form action="/" method="POST">
-        <div class="input-wrap">
-            <input type="name" id="youtube" name="youtube" value="https://www.youtube.com/@test">
-            <button type="submit" class="button">get</button>
-        </div>
-    </form>
-				</div>
-			</div>
-		</div>
-	`);
+  res.sendFile(__dirname + "/public/index.html");
 });
 
 app.post("/", async (req, res) => {
 
-  const username2 = req.body.youtube;
-  console.log("Password: " + username2);
-
+  const myText = req.body.youtube; //mytext is the name of your input box 
+  console.log(myText);
+  
   const browser = await puppeteer.launch({
     args: ["--no-sandbox", "--disable-setuid-sandbox"],
   });
