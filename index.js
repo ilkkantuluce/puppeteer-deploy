@@ -24,17 +24,32 @@ app.post("/instagram", async (req, res) => {
 });
 
 app.post("/facebook", async (req, res) => {
-  const myText = req.body.facebook;
-  console.log(myText);
-  const browser = await puppeteer.launch({
-    args: ["--no-sandbox", "--disable-setuid-sandbox"],
+  (async () => {
+    const browser = await puppeteer.launch(
+    { args: ["--no-sandbox", "--disable-setuid-sandbox"] });
+    const page = await browser.newPage();
+    const myText = req.body.facebook;
+    console.log(myText);
+    try {
+
+        page.on('error', msg => {
+          throw msg ;
+        });
+
+        await page.goto(myText);
+        //await page.waitForTimeout(4000)
+        const text = await page.$eval("body", (el) => el.innerHTML);
+        res.send(text);
+        
+
+    }catch (error) {
+      throw error;
+    }finally{
+      await browser.close();
+    }
+  })().catch((error) => {
+    console.log(error);
   });
-  const page = await browser.newPage();
-  await page.goto(myText);
-  //await page.waitForTimeout(4000)
-  const text = await page.$eval("body", (el) => el.innerHTML);
-  res.send(text);
-  await browser.close();
 });
 
 app.post("/youtube", async (req, res) => {
