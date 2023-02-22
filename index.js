@@ -7,9 +7,9 @@ app.get("/", async (req, res) => {
     args: ["--no-sandbox", "--disable-setuid-sandbox"],
   });
   const page = await browser.newPage();
-  await page.goto("https://www.youtube.com/@geniuskender");
+  await page.goto("https://www.youtube.com/@FREDOPG");
   await page.waitForTimeout(4000)
-  const text = await page.$eval("#text", (el) => el.innerHTML);
+  const text = await page.$eval("#subscriber-count", (el) => el.innerHTML);
   await page.waitForTimeout(4000)
   //await page.screenshot({ path: 'fullpage.png', fullPage: true });
 
