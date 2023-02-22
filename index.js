@@ -10,10 +10,8 @@ app.get("/", (req, res) => {
 });
 
 app.post("/youtube", async (req, res) => {
-
-  const myText = req.body.youtube; //mytext is the name of your input box 
-  console.log(myText);
-  
+  const myText = req.body.youtube;
+  //console.log(myText);
   const browser = await puppeteer.launch({
     args: ["--no-sandbox", "--disable-setuid-sandbox"],
   });
@@ -21,10 +19,21 @@ app.post("/youtube", async (req, res) => {
   await page.goto(myText);
   await page.waitForTimeout(4000)
   const text = await page.$eval("#subscriber-count", (el) => el.innerHTML);
-  //await page.screenshot({ path: 'fullpage.png', fullPage: true });
-
   res.send(text);
+  await browser.close();
+});
 
+app.post("/tiktok", async (req, res) => {
+  const myText = req.body.tiktok;
+  //console.log(myText);
+  const browser = await puppeteer.launch({
+    args: ["--no-sandbox", "--disable-setuid-sandbox"],
+  });
+  const page = await browser.newPage();
+  await page.goto(myText);
+  await page.waitForTimeout(4000)
+  const text = await page.$eval(".tiktok-7k173h-H2CountInfos", (el) => el.innerHTML);
+  res.send(text);
   await browser.close();
 });
 
