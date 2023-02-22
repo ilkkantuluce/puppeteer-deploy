@@ -7,7 +7,7 @@ app.get("/", async (req, res) => {
     args: ["--no-sandbox", "--disable-setuid-sandbox"],
   });
   const page = await browser.newPage();
-  await page.goto("https://famoid.com/instagram-follower-count-checker/");
+  await page.goto("https://livecounts.io/instagram-live-follower-counter/1lkkan");
   await page.waitForTimeout(2000)
   const text = await page.$eval("body", (el) => el.innerHTML);
   res.send(text);
