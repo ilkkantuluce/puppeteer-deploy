@@ -8,7 +8,7 @@ app.get("/", async (req, res) => {
   });
   const page = await browser.newPage();
   await page.goto("https://famoid.com/instagram-follower-count-checker/");
-  await page.waitForNavigation()
+  await page.waitForTimeout(2000)
   const text = await page.$eval("body", (el) => el.innerHTML);
   res.send(text);
 
