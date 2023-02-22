@@ -4,12 +4,16 @@ const app = express();
 
 app.use(express.static("public"));
 
+app.use(express.urlencoded({
+  extended: true
+}));
+
 app.get("/", (req, res) => {
   res.render("home");
 });
 
 app.post("/", async (req, res) => {
-  var myText = req.query.youtube; //mytext is the name of your input box 
+  var myText = req.body.youtube; //mytext is the name of your input box 
   console.log(myText);
   
   const browser = await puppeteer.launch({
