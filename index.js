@@ -9,9 +9,9 @@ app.get("/", (req, res) => {
 });
 
 app.post("/", async (req, res) => {
-  var myText = req.body.youtube; //mytext is the name of your input box 
+  var myText = req.query.youtube; //mytext is the name of your input box 
   console.log(myText);
-
+  
   const browser = await puppeteer.launch({
     args: ["--no-sandbox", "--disable-setuid-sandbox"],
   });
