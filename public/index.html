@@ -14,7 +14,7 @@
           <div>
             <div id="tab-2" class="tab-content">
                 <h2>Facebook</h2>
-                <form action="/" method="POST">
+                <form action="/" method="POST" required>
                     <div class="input-wrap">
                         <input type="url" id="youtube" name="youtube" value="https://www.youtube.com/@test">
                         <button type="submit" class="button">get</button>
@@ -29,7 +29,78 @@
 
 
 
-      <script src="../index.js"></script>
 
+
+      <!----->
+
+
+
+      <div class="container">
+        <div>
+          <div>
+            <ul class="tabs">
+              <li class="tab-link current" tab="tab-1">Facebook</li>
+              <li class="tab-link" tab="tab-2">instagram</li>
+              <li class="tab-link" tab="tab-3">tab</li>
+              <li class="tab-link" tab="tab-4">tab</li>
+              <li class="tab-link" tab="tab-5">tab</li>
+              <li class="tab-link" tab="tab-6">tab</li>
+              <li class="tab-link" tab="tab-7">tab</li>
+            </ul>
+            <div id="tab-1" class="tab-content current">
+                <h2>Facebook</h2>
+                <form>
+                    <div class="input-wrap">
+                        <input type="url" id="facebookpage" aria-label="URL" value="https://www.facebook.com/netflix/">
+                        <button type="submit" id="facebook">get</button>
+                    </div>
+                    <p>Example: https://www.facebook.com/netflix/</p>
+                </form>
+            </div>
+            <div id="tab-2" class="tab-content">
+                <h2>instagram</h2>
+                <form>
+                    <div class="input-wrap">
+                        <input type="url" id="instagrampage" aria-label="URL" value="https://www.instagram.com/netflix/">
+                        <button type="submit" id="instagram">get</button>
+                    </div>
+                    <p>Example: https://www.instagram.com/netflix/</p>
+                </form>
+            </div>
+            <div id="tab-3" class="tab-content">
+                <h2>Facebook</h2>
+                <form action="/youtube" method="POST" required>
+                    <div class="input-wrap">
+                        <input type="url" id="youtube" name="youtube" value="https://www.youtube.com/@test">
+                        <button type="submit" class="button">get</button>
+                    </div>
+                </form>
+            </div>
+            <div id="tab-4" class="tab-content">
+            </div>
+            <div id="tab-5" class="tab-content">
+            </div>
+            <div id="tab-6" class="tab-content">
+            </div>
+            <div id="tab-7" class="tab-content">
+            </div>
+        </div>
+        </div>
+      
+      </div>
+    
+      <div>
+        <div id="result" aria-live="polite"></div>
+        <div id="result2" aria-live="polite"></div>
+        <div id="result3" aria-live="polite"></div>
+        <div id="result4" aria-live="polite"></div>
+      </div>
+
+
+
+
+      <script src="../index.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <script src="tabs.js"></script>
 </body>
 </html>

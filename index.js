@@ -9,7 +9,7 @@ app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/index.html");
 });
 
-app.post("/", async (req, res) => {
+app.post("/youtube", async (req, res) => {
 
   const myText = req.body.youtube; //mytext is the name of your input box 
   console.log(myText);
