@@ -8,7 +8,7 @@ app.get("/", async (req, res) => {
   });
   const page = await browser.newPage();
   await page.goto("https://www.instagram.com/");
-  const text = await page.$eval("body", (el) => el.textContent);
+  const text = await page.$eval("body", (el) => el.innerHTML);
   res.send(text);
 
   await browser.close();
