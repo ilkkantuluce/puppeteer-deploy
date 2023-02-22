@@ -54,7 +54,7 @@ app.post("/tiktok", async (req, res) => {
 
 app.post("/twitter", async (req, res) => {
   const myText = req.body.twitter;
-  //console.log(myText);
+  console.log(myText);
   const browser = await puppeteer.launch({
     args: ["--no-sandbox", "--disable-setuid-sandbox"],
   });
