@@ -7,13 +7,11 @@ app.get("/", async (req, res) => {
     args: ["--no-sandbox", "--disable-setuid-sandbox"],
   });
   const page = await browser.newPage();
-  await page.goto("https://livecounts.io/instagram-live-follower-counter/gio");
+  await page.goto("https://www.youtube.com/@geniuskender");
   await page.waitForTimeout(4000)
-  const text = await page.$eval(".odometer.odometer-auto-theme", (el) => el.innerHTML);
+  const text = await page.$eval("#text", (el) => el.innerHTML);
   await page.waitForTimeout(4000)
-  await page.screenshot({ path: 'fullpage.png', fullPage: true });
-
-  const screenshot = await page.screenshot({ encoding: 'binary' });
+  //await page.screenshot({ path: 'fullpage.png', fullPage: true });
 
   
   res.send(text);
