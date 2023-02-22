@@ -11,14 +11,14 @@ app.get("/", (req, res) => {
 
 app.post("/instagram", async (req, res) => {
   const myText = req.body.instagram;
-  //console.log(myText);
+  console.log(myText);
   const browser = await puppeteer.launch({
     args: ["--no-sandbox", "--disable-setuid-sandbox"],
   });
   const page = await browser.newPage();
   await page.goto(myText);
   await page.waitForTimeout(4000)
-  const text = await page.$eval("section > main > div > header > section > ul > li:nth-child(2) > a > span", (el) => el.innerHTML);
+  const text = await page.$eval("div.xh8yej3.x1gryazu.x10o80wk.x14k21rp.x1porb0y.x17snn68.x6osk4m > section > main > div > header > section > ul > li:nth-child(2) > div > span", (el) => el.innerHTML);
   res.send(text);
   await browser.close();
 });
