@@ -1,0 +1,105 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+
+    <div class="container">
+        <div>
+          <div>
+            <div id="tab-2" class="tab-content">
+                <h2>Facebook</h2>
+                <form>
+                    <div class="input-wrap">
+                        <input type="url" id="facebookpage" aria-label="URL" value="https://www.youtube.com/@test">
+                        <button type="submit" class="button">get</button>
+                    </div>
+                    <p>Example: https://www.facebook.com/netflix/</p>
+                </form>
+            </div>
+        </div>
+        </div>
+      
+      </div>
+
+
+    <script>
+      const button = document.querySelector("button");
+      const ytCount = document.querySelector(".yt-count");
+      const igCount = document.querySelector(".ig-count");
+      const twCount = document.querySelector(".tw-count");
+      const loader = document.querySelector(".loader");
+      const counters = document.querySelectorAll(".count");
+
+      button.addEventListener("click", requestData);
+
+      function requestData() {
+        console.log("button clicked");
+        loader.style.display = "block";
+        button.disabled = true;
+        //Create XHR Object
+        let xhr = new XMLHttpRequest();
+        // OPEN - type, url/file, async
+        xhr.open("POST", "/", true);
+
+        //Used for loading gifs
+        // xhr.onprogress = function () {
+        //   console.log(xhr.readyState);
+        // };
+
+        xhr.setRequestHeader("Content-Type", "application/json");
+
+        // used instead of readystatechange
+        xhr.onload = function () {
+          if (this.status == 200) {
+            let data = JSON.parse(this.responseText);
+            console.log(data);
+            ytCount.setAttribute("data-target", data.YTCount);
+            igCount.setAttribute("data-target", data.instaCount);
+            twCount.setAttribute("data-target", data.twitterCount);
+            loader.style.display = "none";
+            button.disabled = false;
+            animateCounters();
+          } else {
+            console.log("Something went wrong");
+          }
+        };
+
+        //error handling
+        xhr.onerror = function () {
+          console.log("request error");
+        };
+
+        //sends request
+        // let string = JSON.stringify({ conor: "fuck" });
+        // console.log(string);
+        xhr.send();
+      }
+
+      function animateCounters() {
+        let speed = 50;
+        counters.forEach((counter) => {
+          counter.innerText = 0;
+          const target = +counter.getAttribute("data-target");
+          const updateCounter = () => {
+            let count = +counter.innerText;
+            let inc = target / speed;
+
+            if (count < target) {
+              counter.innerText = Math.floor(count + inc);
+              setTimeout(updateCounter, 20);
+            } else {
+              counter.innerText = target;
+            }
+          };
+          updateCounter();
+        });
+      }
+    </script>
+</body>
+</html>
