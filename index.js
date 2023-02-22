@@ -7,7 +7,7 @@ app.use(express.urlencoded());
 app.get("/", (req, res) => {
   //res.sendFile(__dirname + "/public/index.html");
 
-  response.send(`
+  res.send(`
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 		<div class="container">
@@ -29,9 +29,8 @@ app.get("/", (req, res) => {
 
 app.post("/", async (req, res) => {
 
-  const myText = req.body.youtube; //mytext is the name of your input box 
-  console.log(myText);
-  
+  console.log(res.body);
+
   const browser = await puppeteer.launch({
     args: ["--no-sandbox", "--disable-setuid-sandbox"],
   });
