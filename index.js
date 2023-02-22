@@ -60,8 +60,9 @@ app.post("/tiktok", async (req, res) => {
   const page = await browser.newPage();
   await page.goto(myText);
   await page.waitForTimeout(4000)
-  const text = await page.$eval(".tiktok-7k173h-H2CountInfos", (el) => el.innerHTML);
-  res.send(text);
+  const following = await page.$eval("strong[data-e2e='following-count']", (el) => el.innerHTML);
+  const followers = await page.$eval("strong[data-e2e='followers-count']", (el) => el.innerHTML);
+  res.send(following + " " + followers);
   await browser.close();
 });
 
