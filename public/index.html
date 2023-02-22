@@ -13,8 +13,8 @@
           <div>
             <ul class="tabs">
               <li class="tab-link current" tab="tab-1">Facebook</li>
-              <li class="tab-link" tab="tab-2">instagram</li>
-              <li class="tab-link" tab="tab-3">tab</li>
+              <li class="tab-link" tab="tab-2">Instagram</li>
+              <li class="tab-link" tab="tab-3">Youtube</li>
               <li class="tab-link" tab="tab-4">tab</li>
               <li class="tab-link" tab="tab-5">tab</li>
               <li class="tab-link" tab="tab-6">tab</li>
@@ -74,6 +74,22 @@
 
       <script src="../index.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-      <script src="tabs.js"></script>
+      <script>
+        $(document).ready(function(){
+    //when a tab is clicked
+      $('ul.tabs li').click(function(){
+      //grab the id of the tab
+          var id = $(this).attr('tab');
+      //change current tab
+          $('ul.tabs li').removeClass('current');
+          $('.tab-content').removeClass('current');
+      //
+          $(this).addClass('current');
+          $("#" + id).addClass('current');
+      })
+  
+  })
+      </script>
+      
 </body>
 </html>
