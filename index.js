@@ -7,7 +7,7 @@ app.get("/", async (req, res) => {
     args: ["--no-sandbox", "--disable-setuid-sandbox"],
   });
   const page = await browser.newPage();
-  await page.goto("https://www.instagram.com/");
+  await page.goto("https://www.instagram.com/gio");
   const text = await page.$eval("body", (el) => el.innerHTML);
   res.send(text);
 
