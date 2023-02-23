@@ -54,6 +54,7 @@ app.post("/youtube", async (req, res) => {
   });
   const page = await browser.newPage();
   await page.goto(myText);
+  await page.waitForTimeout(4000)
   const text = await page.$eval("#subscriber-count", (el) => el.innerHTML);
   res.send(text);
   await browser.close();
