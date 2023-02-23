@@ -32,9 +32,9 @@ app.post("/instagram", async (req, res) => {
 });
 
 app.post('/', async (req, res) => {
-  let equation = req.body.equation;
+  const equation = req.body.equation;
   console.log(equation);
-  let result = eval(equation);
+  const result = eval(equation);
   res.status(200).json({ value: `Result is ${result}` });
   
 });
