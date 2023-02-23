@@ -13,27 +13,20 @@ app.post("/instagram", async (req, res) => {
   const myText = req.body.instagram;
   console.log(myText);
   const browser = await puppeteer.launch({
-    args: [
-      '--ignore-certificate-errors',
-      '--no-sandbox',
-      '--disable-setuid-sandbox',
-      '--disable-dev-shm-usage',
-      '--lang=ja,en-US;q=0.9,en;q=0.8',
-      '--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
-      '--proxy-server=http://PROXYaddress:port'
-    ],
+    args: ["--no-sandbox", "--disable-setuid-sandbox"]
   });
   const page = await browser.newPage();
   await page.goto(myText);
-  await page.waitForTimeout(4000)
+  await page.waitForTimeout(2000)
   const text = await page.$eval("body", (el) => el.innerHTML);
   res.send(text);
   await browser.close();
 });
 
 app.post("/facebook", async (req, res) => {
-    const browser = await puppeteer.launch(
-    { args: ["--no-sandbox", "--disable-setuid-sandbox"] });
+    const browser = await puppeteer.launch({ 
+      args: ["--no-sandbox", "--disable-setuid-sandbox"]
+    });
     const page = await browser.newPage();
     const myText = req.body.facebook;
     console.log(myText);
