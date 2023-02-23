@@ -148,7 +148,7 @@ button {
                         <input type="url" id="instagram" name="instagram" value="https://www.instagram.com/test">
                         <button type="submit" class="button">get</button>
                     </div>
-                    <p class="followers"></p>
+                    <p id="followers"></p>
                     <p class="totallikes"></p>
                     <p>Example: https://www.instagram.com/netflix/</p>
                 </form>
@@ -196,53 +196,6 @@ button {
 
 
       <script src="../index.js"></script>
-      <script>
-        const followers = document.querySelector(".followers");
-        const totallikes = document.querySelector(".totallikes");
-        const button = document.querySelector("#button");
-        button.addEventListener("click", requestData);
-
-        function requestData() {
-        console.log("button clicked");
-        button.disabled = true;
-        //Create XHR Object
-        let xhr = new XMLHttpRequest();
-        // OPEN - type, url/file, async
-        xhr.open("POST", "/facebook", true);
-
-        //Used for loading gifs
-        // xhr.onprogress = function () {
-        //   console.log(xhr.readyState);
-        // };
-
-        xhr.setRequestHeader("Content-Type", "application/json");
-
-        // used instead of readystatechange
-        xhr.onload = function () {
-          if (this.status == 200) {
-            let data = JSON.parse(this.responseText);
-            console.log(data);
-            followers.setAttribute("data-target", data.followers);
-            totallikes.setAttribute("data-target", data.totallikes);
-            button.disabled = false;
-          } else {
-            console.log("Something went wrong");
-          }
-        };
-
-        //error handling
-        xhr.onerror = function () {
-          console.log("request error");
-        };
-
-        //sends request
-        // let string = JSON.stringify({ conor: "fuck" });
-        // console.log(string);
-        xhr.send();
-      }
-
-
-      </script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
       <script>
         $(document).ready(function(){
