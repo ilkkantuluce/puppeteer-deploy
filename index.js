@@ -16,13 +16,12 @@ app.post("/instagram", async (req, res) => {
     args: ["--no-sandbox", "--disable-setuid-sandbox"]
   });
   const page = await browser.newPage();
-  await page.waitForTimeout(4000)
   //https://famoid.com/instagram-follower-count-checker/
   await page.goto(myText);
   await page.waitForSelector('[name="username"]')
   await page.type('[name="username"]', 'ebo')
   await page.click('#get_free_button')
-
+  await page.waitForTimeout(4000)
   const text = await page.$eval("body", (el) => el.innerHTML);
   res.send(text);
   await browser.close();
