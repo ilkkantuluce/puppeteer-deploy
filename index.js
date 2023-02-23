@@ -31,6 +31,15 @@ app.post("/instagram", async (req, res) => {
   await browser.close();
 });
 
+app.post('/', async (req, res) => {
+  let equation = req.body.equation;
+  console.log(equation);
+  let result = eval(equation);
+  res.status(200).json({ value: `Result is ${result}` });
+  
+});
+
+
 app.post("/facebook", async (req, res) => {
     const browser = await puppeteer.launch(
     { args: ["--no-sandbox", "--disable-setuid-sandbox"] });
