@@ -140,14 +140,6 @@ button {
                     </div>
                     <p>Example: https://www.facebook.com/netflix/</p>
                 </form>
-
-
-                <form action="/" method="post" class="ajax">
-                    <label for="userInput">Enter Equation</label>
-                    <input type="text" id="equation" name="equation" />
-                    <button type="submit" id="btn_submit">Calculate</button>
-                  </form>
-                  <div class="container"></div>
             </div>
             <div id="tab-2" class="tab-content">
                 <h2>instagram</h2>
@@ -156,6 +148,8 @@ button {
                         <input type="url" id="instagram" name="instagram" value="https://www.instagram.com/test">
                         <button type="submit" class="button">get</button>
                     </div>
+                    <p id="followers"></p>
+                    <p class="totallikes"></p>
                     <p>Example: https://www.instagram.com/netflix/</p>
                 </form>
             </div>
@@ -204,7 +198,7 @@ button {
       <script src="../index.js"></script>
       <script>  
 
-        document.querySelector('.ajax').addEventListener('submit',submitEquation);
+        document.querySelector('form').addEventListener('submit',submitEquation);
        
            
                function submitEquation(event){
