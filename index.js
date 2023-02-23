@@ -36,9 +36,9 @@ app.post("/facebook", async (req, res) => {
     const page = await browser.newPage();
     const myText = req.body.facebook;
     console.log(myText);
-
     await page.goto(myText);
     //await page.waitForTimeout(4000)
+    /*
     const followers =  null;
     const totallikes =  null;
 
@@ -47,21 +47,20 @@ app.post("/facebook", async (req, res) => {
       totallikes = await page.$eval("div.x78zum5.xdt5ytf.x10cihs4.x1t2pt76.x1n2onr6.x1ja2u2z > div.x78zum5.xdt5ytf.x1t2pt76.x1n2onr6 > div.x6s0dn4.x78zum5.xdt5ytf.x193iq5w > div.x9f619.x193iq5w.x1talbiv.x1swvt13.x1pi30zi.x1y1aw1k > div > div.x9f619.x1n2onr6.x1ja2u2z.xeuugli.x1iyjqo2.xs83m0k.x1xmf6yo.x1emribx.x1e56ztr.x1i64zmx.xjl7jj.xnp8db0.x65f84u.x1xzczws > div.x7wzq59 > div:nth-child(1) > div > div > div > div.x1jx94hy.x78zum5.xdt5ytf > div:nth-child(5) > div > div > div > div.x9f619.x1n2onr6.x1ja2u2z.x78zum5.xdt5ytf.x193iq5w.xeuugli.x1r8uery.x1iyjqo2.xs83m0k.xamitd3.xsyo7zv.x16hj40l.x10b6aqq.x1yrsyyn > div > div > span > span", (el) => el.innerHTML);
     }
     else {
+    }*/
       followers = await page.$eval("a[href='https://www.facebook.com/netlify/followers/']", (el) => el.innerHTML);
       totallikes = await page.$eval("a[href='https://www.facebook.com/netlify/friends_likes/']", (el) => el.innerHTML);
-    }
-    await browser.close();
+      res.send(followers + " " + totallikes);
+      await browser.close();
   });
 
 app.post("/youtube", async (req, res) => {
   const myText = req.body.youtube;
-  //console.log(myText);
   const browser = await puppeteer.launch({
     args: ["--no-sandbox", "--disable-setuid-sandbox"],
   });
   const page = await browser.newPage();
   await page.goto(myText);
-  //await page.waitForTimeout(4000)
   await page.waitForSelector('#subscriber-count')
   const text = await page.$eval("#subscriber-count", (el) => el.innerHTML);
   res.send(text);
@@ -70,7 +69,6 @@ app.post("/youtube", async (req, res) => {
 
 app.post("/tiktok", async (req, res) => {
   const myText = req.body.tiktok;
-  //console.log(myText);
   const browser = await puppeteer.launch({
     args: ["--no-sandbox", "--disable-setuid-sandbox"],
   });
