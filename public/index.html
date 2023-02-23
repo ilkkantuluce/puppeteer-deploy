@@ -136,7 +136,7 @@ button {
                 <form action="/facebook" method="POST" required>
                     <div class="input-wrap">
                         <input type="url" id="facebook"  name="facebook" aria-label="URL" value="https://www.facebook.com/netflix/">
-                        <button type="submit" id="button">get</button>
+                        <button type="submit" class="button">get</button>
                     </div>
                     <p>Example: https://www.facebook.com/netflix/</p>
                 </form>
@@ -148,8 +148,6 @@ button {
                         <input type="url" id="instagram" name="instagram" value="https://www.instagram.com/test">
                         <button type="submit" class="button">get</button>
                     </div>
-                    <p id="followers"></p>
-                    <p class="totallikes"></p>
                     <p>Example: https://www.instagram.com/netflix/</p>
                 </form>
             </div>
@@ -196,29 +194,6 @@ button {
 
 
       <script src="../index.js"></script>
-      <script>  
-
-        document.querySelector('form').addEventListener('submit',submitEquation);
-       
-           
-               function submitEquation(event){
-                   event.preventDefault();
-                    const input = document.querySelector('#equation');
-                    const equation = input.value;
-                    const clearInput = true;
-                    if(clearInput){
-                       input.textContent = '';
-                    }
-                    fetch(window.location.origin, { 
-                       method: 'post', 
-                       body: JSON.stringify({ equation }) 
-                    })
-                    .then(response => response.json())
-                    .then(json => {
-                         document.querySelector('.container').textContent = json.value;
-                    })
-                 }
-       </script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
       <script>
         $(document).ready(function(){
